@@ -17,10 +17,10 @@ public class Car : IVehicle, ICompany
     public string BodyType { get; set; }
     
     //IVehicle members
-    public string Make { get; set; }
+    public int Year { get; set; }
     public string Model { get; set; }
     public string Color { get; set; }
-    public double Horsepower { get; set; }
+    public bool HasChangedGears { get; set; }
 
     //ICompany members
     public string CompanyName { get; set; }
@@ -33,11 +33,22 @@ public class Car : IVehicle, ICompany
 
     public void Reverse()
     {
-        Console.WriteLine($"{GetType().Name} is now reversing.");
+        Console.WriteLine(HasChangedGears ? $"{GetType().Name} is now reversing." : "Please change gears first.");
+        HasChangedGears = false;
     }
 
     public void Park()
     {
-        Console.WriteLine($"{GetType().Name} has parked.
+        Console.WriteLine($"{GetType().Name} has parked.");
+    }
+    
+    public void OpenTrunk()
+    {
+        Console.WriteLine(HasTrunk ? $"{GetType().Name} has opened the trunk." : "This vehicle does not have a trunk.");
+    }
+
+    public void DisplayDetails()
+    {
+        Console.WriteLine($"This vehicle is a {Color} {Year} {CompanyName} {Model} {BodyType}, made in {Location}.");
     }
 }
